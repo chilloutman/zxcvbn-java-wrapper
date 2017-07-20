@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'ZxcvbnBench'
+
+version = '4.4.2'
+def zxcvbnJsUrl = "https://raw.githubusercontent.com/dropbox/zxcvbn/v${version}/dist/zxcvbn.js"
+
+task downloadZxcvbnJs {
+    def zxcvbnJsFile = file('src/main/resources/zxcvbn.js')
+    inputs.property 'version', version
+    outputs.file zxcvbnJsFile
+
+    doLast {
+        zxcvbnJsFile << zxcvbnJsUrl.toURL().text
+    }
+}
+
+processResources.dependsOn downloadZxcvbnJs

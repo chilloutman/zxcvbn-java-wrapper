@@ -1,0 +1,15 @@
+# Build
+
+.gradle/
+build/
+bin/
+
+src/main/resources/zxcvbn.js
+
+# IDE
+
+.project
+.classpath
+.settings/
+
+.vscode/
