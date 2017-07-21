@@ -14,6 +14,20 @@ Zxcvbn.Result result = zxcvbn.apply("password");
 
 Zxcvbn implements the `java.util.function.Function` interface. It can be used in higher order functions such as the ones found in `java.util.stream`.
 
+## Dependency
+
+Gradle:
+```groovy
+repositories {
+    maven {
+        url 'https://raw.github.com/chilloutman/zxcvbn-java-wrapper/master/repo/'
+    }
+}
+dependencies {
+    compile "ch.neiva:zxcvbn-java-wrapper:${zxcvbnVersion}"
+}
+```
+
 ## Benchmark
 
 Calling `zxcvbn` takes less than _10 ms_. Creating an instance of `Zxcvbn` however, takes _several seconds_. The instance should therefore be **reused**.
