@@ -1,10 +1,9 @@
 apply plugin: 'java'
-apply plugin: 'application'
 
 version = '4.4.2'
 group = 'ch.neiva'
 
-mainClassName = 'ZxcvbnBench'
+// zxcvbn.js
 
 def zxcvbnJs = file('src/main/resources/zxcvbn.js')
 
@@ -26,3 +25,25 @@ task checksumZxcvbnJs {
 }
 
 processResources.dependsOn downloadZxcvbnJs, checksumZxcvbnJs
+
+// Benchmark
+
+apply plugin: 'application'
+mainClassName = 'ZxcvbnBench'
+
+// Publish
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url 'repo'
+        }
+    }
+}
